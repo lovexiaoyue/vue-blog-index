@@ -67,7 +67,7 @@ module.exports = {
     open: true, //配置自动启动浏览器
     proxy: {
       "/apis": {
-        target: "http://127.0.0.1:8080/api/v2", // 需要请求的地址
+         target: "http://47.106.64.131:8080/api/v2", // 需要请求的地址
         // target: process.env.VUE_APP_URL,   // 需要请求的地址
         changeOrigin: true, // 是否跨域
         pathRewrite: {

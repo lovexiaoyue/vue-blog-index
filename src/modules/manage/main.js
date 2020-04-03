@@ -22,8 +22,8 @@ Vue.use(MyPage)
 import TextLoading from '@/components/TextLoading'
 Vue.use(TextLoading)
 
-Vue.prototype.$baseUrl = process.env.VUE_APP_URL
-Vue.prototype.$staticUrl = 'http://static.golang365.com/'
+// Vue.prototype.$baseUrl = process.env.VUE_APP_URL
+Vue.prototype.$staticUrl = 'http://taohua-bolg.test.upcdn.net/'
 // }
 // Vue.prototype.$baseUrl = baseUrl
 // // 引入ivew,

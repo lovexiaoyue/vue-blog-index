@@ -10,9 +10,9 @@
 
         <div class="examp">
           <h4>格式示例</h4>
-          <p>名称: 九歌</p>
-          <p>链接: http://golang365.com</p>
-          <p>头像: https://avatars2.githubusercontent.com/u/23181508?s=460&v=4</p>
+          <p>名称: 理想</p>
+          <p>链接: http://xxxxx.com</p>
+          <p>头像: https://xxxxxxx</p>
           <p>简介: 集颜值和技术于一身的程序猿</p>
         </div>
 

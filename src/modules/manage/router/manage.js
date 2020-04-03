@@ -27,7 +27,7 @@ const manage = [
     component: Home,
     name: "manageHome",
     meta: {
-      requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+      // requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     },
     children: [
       {
@@ -35,7 +35,7 @@ const manage = [
         component: Setting,
         name: "基础设置",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -43,7 +43,7 @@ const manage = [
         component: Article,
         name: "博文列表",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -51,7 +51,7 @@ const manage = [
         component: AddArticle,
         name: "写博客",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -59,7 +59,7 @@ const manage = [
         component: AddArticle,
         name: "编辑博文",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -67,7 +67,7 @@ const manage = [
         component: Users,
         name: "会员列表",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -75,7 +75,7 @@ const manage = [
         component: Message,
         name: "留言板",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -83,7 +83,7 @@ const manage = [
         component: Comment,
         name: "评论列表",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -91,7 +91,7 @@ const manage = [
         component: Rassword,
         name: "修改密码",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -99,7 +99,7 @@ const manage = [
         component: Link,
         name: "友情链接",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       {
@@ -107,7 +107,7 @@ const manage = [
         component: Ad,
         name: "广告图",
         meta: {
-          requireAuth: true
+          // requireAuth: true
         }
       },
       { path: "/*", redirect: { name: "基础设置" } }

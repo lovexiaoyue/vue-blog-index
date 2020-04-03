@@ -6,11 +6,11 @@
       </a>
       <p>本站已萌萌哒运行{{longTime}}</p>
       <p class="base">Crafted with <i class="iconfont lv-icon-aixin"></i> by 
-        <span>@sweida</span>&nbsp;&nbsp;base on 
+        <span>@理想</span>&nbsp;&nbsp;base on
         <a class="green" href="https://github.com/sweida/laravel-blog-api" target="_blank">Laravel</a> + 
         <a class="green" href="https://github.com/sweida/vue-blog-index" target="_blank">Vue</a>
       </p>
-      <p>© 2018 - {{year}} &nbsp;&nbsp;天行九歌 &nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" target="_blank" style="color: #fff">粤ICP备19044398号-1</a></p>
+      <p>© 2018 - {{year}} &nbsp;&nbsp;理想三旬 &nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" target="_blank" style="color: #fff">xxxxxxx</a></p>
       
     </div>
   </footer>

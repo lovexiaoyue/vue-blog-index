@@ -42,13 +42,13 @@
       <div class="title">
         <h2>关于我</h2>
         <em>——集技术和颜值于一身的程序猿</em>
-        <em>坐标 GuangZhou「广州」</em>
+        <em>坐标 ShenZhen「深圳」</em>
       </div>
     </div>
     <div class="about">
-      <p>施伟达，90后、毕业于广东一所野鸡大学的电子信息专业，沉迷于编程不能自拔。</p>
-      <p>与时俱进的电脑迷、技术控、真会修电脑的程序猿。</p>
-      <p>15年开始接触前端，一路单刷副本，16年底开始学习后端语言，打怪升级，目标成功合格的全栈攻城狮。</p>
+      <p>理想，90后、一名后端程序员。</p>
+      <p>对前端也有涉猎。</p>
+      <p>16年开始接触编程，从C语言到pyhton、PHP、Go，目标是大数据和人工智能方向发展。</p>
       <div class="skills">
         <p>目前已习得技能</p>
         <img v-for="(item, index) in skills" :key="index" :src="$staticUrl + item.url">

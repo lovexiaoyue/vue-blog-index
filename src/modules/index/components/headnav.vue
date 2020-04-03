@@ -13,7 +13,7 @@
             <a @click="goRouter(item.url)">{{item.name}}</a>
           </li>
           <li>
-            <a href="http://blog-doc.golang365.com" target="_blank">API文档</a>
+            <a href="xx" target="_blank">API文档</a>
           </li>
         </div>
 
@@ -203,7 +203,7 @@ export default {
 .header
   display: flex
   min-height: 60px
-  background-image: linear-gradient(167deg,#2b274b,#771787 49%,rgba(201,28,136,.91));
+  background-image: linear-gradient(167deg, #2b274b42, #87cefa 49%, rgba(28, 130, 201, 0.47))
   color #fff
   position relative
   width 100%
@@ -253,7 +253,7 @@ export default {
     padding 1px 15px
     margin 0 2px
   .left li.active
-    background: #7c1879;
+    background: rgba(24, 77, 124, 0.38);
     border-radius: 3px;
   .left li a:hover
     border-bottom: 1px solid;
