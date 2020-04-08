@@ -1,7 +1,7 @@
 {
   "name": "vue-cli3-demo",
   "version": "0.1.0",
-  "homepage": "https://sweida.github.io/vue-cli3-demo",
+  "homepage": "https://yueyuluo.github.io/vue-cli3-demo",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -10,16 +10,16 @@
       </div>
     </div>
     <div class="about">
-      <p>从 2017 年开始写博客记录自己技术成长的一点一滴，用过了多种博客，从最开始的博客园，到Hexo，再到WordPress。</p>
-      <p>但是每个都有各自的缺点和局限性，逼格档次也不够，本着不折腾会死的心，决定自己写一个，功能必须齐全的，于是瞎折腾了2个月(倾心制作)，本站终于诞生了。</p>
-      <h3>本站尝试使用如下技术构建</h3>
+      <p>一直都有把自己的学习笔记记录下来的习惯，用过很多博客，但是还是希望有一个自己的博客。</p>
+      <p>自己写过Python Flask的一个博客，但是由于前端基础较差，写出的页面不够美观，于是从github上找到了作者sweida的这个开源博客。</p>
+      <h3>在这个项目的基础上进行修改，作为自己的个人博客。</h3>
 
       <div class="make">
         <div>
           <img src="../../../assets/laravel.png" alt="">
           <p class="laravel">Laravel
           </p>
-          <a href="https://github.com/sweida/laravel-blog-api" target="_blank" class="laravel">
+          <a href="https://github.com/yueyuluo/laravel-blog-api" target="_blank" class="laravel">
             <Icon type="logo-github" />
           </a>
 
@@ -28,12 +28,12 @@
         <div>
           <img src="../../../assets/vue.jpg" alt="">
           <p class="vue">Vue</p> 
-          <a href="https://github.com/sweida/vue-blog-index" target="_blank" class="vue">
+          <a href="https://github.com/yueyuluo/vue-blog-index" target="_blank" class="vue">
             <Icon type="logo-github" />
           </a>
         </div>
       </div>
-      <p>如果该项目对你有帮助，希望可以给个<em class="star">star</em></p>
+      <p>在此感谢@sweida，希望可以给个<em class="star">star</em></p>
     </div>
 
     <div class="about-bg">
@@ -41,7 +41,7 @@
       <div class="bg"></div>
       <div class="title">
         <h2>关于我</h2>
-        <em>——集技术和颜值于一身的程序猿</em>
+        <em>——典型的技术宅男，爱好编程与二次元</em>
         <em>坐标 ShenZhen「深圳」</em>
       </div>
     </div>

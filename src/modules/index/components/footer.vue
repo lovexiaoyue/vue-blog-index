@@ -1,16 +1,16 @@
 <template>
   <footer>
     <div class="foot-text">
-      <a href="https://github.com/sweida" target="_blank" class="link">
+      <a href="https://github.com/yueyuluo" target="_blank" class="link">
         <Icon type="logo-github" />
       </a>
       <p>本站已萌萌哒运行{{longTime}}</p>
       <p class="base">Crafted with <i class="iconfont lv-icon-aixin"></i> by 
         <span>@理想</span>&nbsp;&nbsp;base on
-        <a class="green" href="https://github.com/sweida/laravel-blog-api" target="_blank">Laravel</a> + 
-        <a class="green" href="https://github.com/sweida/vue-blog-index" target="_blank">Vue</a>
+        <a class="green" href="https://github.com/yueyuluo/laravel-blog-api" target="_blank">Laravel</a> +
+        <a class="green" href="https://github.com/yueyuluo/vue-blog-index" target="_blank">Vue</a>
       </p>
-      <p>© 2018 - {{year}} &nbsp;&nbsp;理想三旬 &nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" target="_blank" style="color: #fff">xxxxxxx</a></p>
+      <p>© 2020 - {{year}} &nbsp;&nbsp;理想三旬 &nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn" target="_blank" style="color: #fff">赣ICP备20004404号-1</a></p>
       
     </div>
   </footer>
@@ -31,7 +31,7 @@ export default {
 
     let that = this;
     function getRemainderTime (){
-      let startTime = "2018-10-10"
+      let startTime = "2020-03-30"
       let s1 = new Date(startTime.replace(/-/g, "/")),
       s2 = new Date(),
       runTime = parseInt((s2.getTime() - s1.getTime()) / 1000);
