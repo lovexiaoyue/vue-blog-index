@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     async getSkills() {
-      const res = await this.$post('/apis/ad', {type: '技能'})
+      const res = await this.$post('/api/ad', {type: '技能'})
       this.skills = res.data
     },
   }

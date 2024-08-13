@@ -124,7 +124,7 @@ export default {
     // 获取留言
     getMessage() {
       // this.loading = true
-      this.$post('/apis/message/list', this.pageModel).then(res => {
+      this.$post('/api/message/list', this.pageModel).then(res => {
         this.loading = false
         this.pageModel.sumCount = res.data.total
         this.messageList = res.data.data
@@ -141,7 +141,7 @@ export default {
     },
     // 提交留言
     submitMessage() {
-      this.$post('/apis/message/add', this.message).then(res => {
+      this.$post('/api/message/add', this.message).then(res => {
         this.getMessage()
         this.$Message.success(res.message)
         this.message = {
@@ -152,7 +152,7 @@ export default {
     },
     // 删除自己的留言
     deleteComment(item) {
-      this.$post('/apis/message/delete', {id: item.id}).then(res => {
+      this.$post('/api/message/delete', {id: item.id}).then(res => {
         this.messageList.splice(this.messageList.indexOf(item), 1)
         this.$Message.success(res.message)
       }).catch(() =>{})

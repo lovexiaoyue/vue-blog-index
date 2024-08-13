@@ -155,19 +155,7 @@ export default {
         window.open('/manage.html#/articlelist', '_blank');
       }
       if (item == 'logout') {
-        this.$post('/apis/logout').then(res => {
-          this.$Notice.success({
-            title: res.message,
-            desc: '欢迎下次再来👏',
-            duration: 3,
-          });
-          // this.$Message.success(res.message)
-          this.$router.push('/')
-          this.Logout()
-        }).catch(() => {
-          this.$router.push('/')
-          this.Logout()
-        })
+        this.$store.commit('RESET_STATE')
       }
     }
   }

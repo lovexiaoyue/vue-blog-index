@@ -2,8 +2,10 @@ const Login = resolve => require(["@/modules/manage/login"], resolve);
 const Home = resolve => require(["@/modules/manage/home.vue"], resolve);
 const Setting = resolve => require(["@/modules/manage/page/setting"], resolve);
 const Article = resolve => require(["@/modules/manage/page/article"], resolve);
+const ArticleList = resolve => require(["@/modules/manage/page/articleList"], resolve);
 const AddArticle = resolve => require(["@/modules/manage/page/addArticle"], resolve);
 const Users = resolve => require(["@/modules/manage/page/users"], resolve);
+const AddArticleBk = resolve => require(["@/modules/manage/page/addArticlebk"], resolve);
 const Message = resolve => require(["@/modules/manage/page/message"], resolve);
 const Comment = resolve => require(["@/modules/manage/page/comment"], resolve);
 const Rassword = resolve => require(["@/modules/manage/page/password"], resolve);
@@ -27,39 +29,55 @@ const manage = [
     component: Home,
     name: "manageHome",
     meta: {
-      // requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+      requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     },
     children: [
       {
         path: "/setting",
         component: Setting,
-        name: "基础设置",
+        name: "发布活动",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
         path: "/articlelist",
         component: Article,
-        name: "博文列表",
+        name: "兼职列表",
         meta: {
-          // requireAuth: true
+          requireAuth: true
+        }
+      },
+      {
+        path: "/activelist",
+        component: ArticleList,
+        name: "活动列表",
+        meta: {
+          requireAuth: true
         }
       },
       {
         path: "/article/add",
         component: AddArticle,
-        name: "写博客",
+        name: "发布兼职",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
         path: "/article/edit/:id",
         component: AddArticle,
-        name: "编辑博文",
+        name: "编辑兼职",
         meta: {
-          // requireAuth: true
+          requireAuth: true
+        }
+      },
+      {
+        path: "/setting/edit/:id",
+        component: Setting,
+        name: "编辑活动",
+        meta: {
+          requireAuth: true
         }
       },
       {
@@ -67,23 +85,15 @@ const manage = [
         component: Users,
         name: "会员列表",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
-        path: "/message",
-        component: Message,
-        name: "留言板",
+        path: "/addArticlebk",
+        component: AddArticleBk,
+        name: "会员列表",
         meta: {
-          // requireAuth: true
-        }
-      },
-      {
-        path: "/comment",
-        component: Comment,
-        name: "评论列表",
-        meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
@@ -91,7 +101,7 @@ const manage = [
         component: Rassword,
         name: "修改密码",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
@@ -99,7 +109,7 @@ const manage = [
         component: Link,
         name: "友情链接",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
       {
@@ -107,10 +117,10 @@ const manage = [
         component: Ad,
         name: "广告图",
         meta: {
-          // requireAuth: true
+          requireAuth: true
         }
       },
-      { path: "/*", redirect: { name: "基础设置" } }
+      { path: "/*", redirect: { name: "兼职列表" } }
     ]
   }
 ];

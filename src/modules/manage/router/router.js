@@ -30,8 +30,6 @@ const router = new Router({
 
 })
 
-
-
 router.beforeEach((to, from, next) => {
   // 使用钩子函数对路由进行权限跳转
   // 如果用户已经登录，访问登录和注册时，自动跳转到首页
@@ -46,11 +44,11 @@ router.beforeEach((to, from, next) => {
         query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
       })
     }
-  } 
+  }
   else {
     next();
   }
-  
+
   if (isadmin && to.path == "/login") {
     next("/articlelist")
   }

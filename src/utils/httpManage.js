@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from '@/modules/manage/router/router'
 import { Message } from 'element-ui'
-// import { removeLogin } from './loginStatus'
+import { removeLogin } from './loginStatus'
 import store from "../store/index"
 
 // 配置开发和生产的请求接口
@@ -34,11 +34,21 @@ service.interceptors.response.use(
     // window.vm.$loading.hide()
     // 统一处理错误
     // 在这里对返回的数据进行处理
-    if (res.data.status == 'success') {
+    if (res.data.errno == 0) {
       return Promise.resolve(res.data)
+    } else if(res.data.errno == 3){
+      Message({
+        message: "用户未登录",
+        type: 'error',
+        duration: 1000,
+        onClose() {
+          store.commit("LOGOUT");
+          router.push('/admin/login')
+        },
+      })
     } else {
       Message({
-        message: res.data.message,
+        message: res.data.errmsg,
         type: 'error',
         duration: 2000
       })
@@ -49,7 +59,7 @@ service.interceptors.response.use(
     if (error.response.status == 401) {
       // 登录过期
       Message({
-        message: error.response.data.message,
+        message: error.response.data.errmsg,
         type: 'error',
         duration: 2000,
         onClose() {
@@ -63,7 +73,7 @@ service.interceptors.response.use(
     } else if (error.response.status == 422) {
       // token过期
       Message({
-        message: error.response.data.message,
+        message: error.response.data.errmsg,
         type: 'error',
         duration: 2000,
         onClose() {
@@ -77,7 +87,7 @@ service.interceptors.response.use(
     } else if (error.response.status == 403) {
       // 没有权限
       Message({
-        message: error.response.data.message,
+        message: error.response.data.errmsg,
         type: 'error',
         duration: 2000,
         onClose() {
@@ -94,7 +104,7 @@ service.interceptors.response.use(
       })
     } else {
       Message({
-        message: error.response.status+': ' +error.response.data.message,
+        message: error.response.status+': ' +error.response.data.errmsg,
         type: 'error',
         duration: 2000
       })

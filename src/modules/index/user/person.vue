@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     getComment() {
-      this.$post('/apis/comment/person', this.pageModel1).then(res => {
+      this.$post('/api/comment/person', this.pageModel1).then(res => {
         this.loading = false
         this.commentsTotal = res.data.total
         this.comments = res.data.data
@@ -131,14 +131,14 @@ export default {
       let param = {
         id: item.id
       }
-      this.$post('/apis/comment/delete', param).then(res => {
+      this.$post('/api/comment/delete', param).then(res => {
         this.comments.splice(this.comments.indexOf(item), 1)
         this.commentsTotal-=1
         this.$Message.success(res.message)
       }).catch(() => {})
     }, 
     getMessage() {
-      this.$post('/apis/message/person', this.pageModel2).then(res => {
+      this.$post('/api/message/person', this.pageModel2).then(res => {
         this.loading = false
         this.messages = res.data.data
         this.messagesTotal = res.data.total
@@ -153,7 +153,7 @@ export default {
       let param = {
         id: item.id
       }
-      this.$post('/apis/message/delete', param).then(res => {
+      this.$post('/api/message/delete', param).then(res => {
         this.messages.splice(this.messages.indexOf(item), 1)
         this.messagesTotal-=1
         this.$Message.success(res.message)

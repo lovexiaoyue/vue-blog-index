@@ -13,7 +13,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    if (config.url == 'apis/authentication/form') {
+    if (config.url == 'api/authentication/form') {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
       config.headers['deviceId'] = '9001'
     } else {
@@ -33,9 +33,9 @@ service.interceptors.request.use(
 // respone拦截器
 service.interceptors.response.use(
   res => {
-    if (res.data.status == 401) {
+    if (res.errmsg == "user not login") {
       Message({
-        message: res.data.msg,
+        message: res.errmsg,
         type: 'error',
         duration: 2000,
         onClose() {
@@ -69,6 +69,7 @@ service.interceptors.response.use(
         },
       })
     } else {
+      console.log(res)
       return res
     }
   },

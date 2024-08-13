@@ -66,7 +66,7 @@ export default {
   methods: {
     // 获取留言 all=1请求所有，不加的话请求的是有效期内的
     getLink() {
-      this.$post('/apis/link/list', this.pageModel).then(res => {
+      this.$post('/api/link/list', this.pageModel).then(res => {
         this.links = res.data.data
         this.loading = false
       }).catch(() => {})

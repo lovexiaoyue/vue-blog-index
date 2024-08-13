@@ -14,12 +14,9 @@
           :router="true" 
           :default-active="$route.path" 
           active-text-color="#ffd04b">
-          <el-menu-item index="1">
-            <a href="/" target="_blank">前往博客</a>
-          </el-menu-item>
           <el-submenu class="user-nav" index="">
             <template slot="title">
-              <img src="../../assets/avatar/admin.jpg" class="userimg">
+              <img src="../../assets/avatar/admin.webp" class="userimg">
               <span class="admin-name">{{user.username}}</span>
             </template>
             <el-menu-item index="/resetpassword">修改密码</el-menu-item>
@@ -51,11 +48,11 @@ export default {
       this.$confirm('确认退出吗?', '提示', {
         type: 'warning'
       }).then(() => {
-        this.$post('/apis/logout').then(res => {
-          this.$message.success(res.message)
-          this.Logout()
+        let user = {
+          admin: false
+        }
+        this.$store.commit('USERINFO', user)
           this.$router.push('/login')
-        }).cathc(err => {})
       }).catch(() => {
       })
     },

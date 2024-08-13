@@ -1,11 +1,13 @@
 <template>
   <div class="login">
     <div class="el-form">
-      <div class="logo"></div>
+      <div class="title">
+         后台管理系统
+      </div>
       <div class="formbox">
         <div>
           <label for="name">账号</label>
-          <input v-model="formCustom.name" type="text" id="name" placeholder="请输入账号" auto-complete="off">
+          <input v-model="formCustom.username" type="text" id="name" placeholder="请输入账号" auto-complete="off">
         </div>
         <div>
           <label for="password">密码</label>
@@ -27,7 +29,7 @@ export default {
       show: true,
       checked: true,
       formCustom: {
-        name: '',
+        username: '',
         password: '',
         type: 'name'
       }
@@ -45,14 +47,17 @@ export default {
       'Token', 'UserInfo'
     ]),
     loginSubmit() {
-      this.formCustom.name.indexOf('@') == -1 ? this.formCustom.type = 'name' : this.formCustom.type = 'email'
-      this.$post('/apis/admin/login', this.formCustom).then(res => {
+      this.$post('/api/login', this.formCustom).then(res => {
         // 因为接口请求用户信息需要时间，路由会先拦截，所以先设置 admin=true
+        if(res.data.admin !== 1){
+          this.$message.error('权限不足！');
+          return;
+        }
         let user = {
           admin: true
         }
         this.$store.commit('USERINFO', user)
-        
+
         this.$message.success('登录成功！');
         this.Token(res.data.token)
         this.UserInfo()
@@ -78,7 +83,7 @@ export default {
 .login{
   width: 100%;
   height: 100%;
-  background: url(../../assets/message.jpg) no-repeat center top;
+  background: url(../../assets/background1.jpeg) no-repeat center top;
   background-size: cover;
   .el-form {
     position: absolute;
@@ -91,11 +96,6 @@ export default {
     width: 300px;
     padding: 20px 30px;
     background: #fff;
-    .logo{
-      width: 100%;
-      height: 170px;
-      background: url(../../assets/loginlogo.png) no-repeat center bottom
-    }
     .remember {
       margin: 0px 0px 35px 0px;
     }
@@ -148,6 +148,14 @@ export default {
     .submit:hover{
       box-shadow: 0px 5px 15px #9db7f1;
       transition: all 0.2;
+    }
+    .title{
+      font-size: 20px;
+      color: rgb(131 181 255);
+      margin-top: 10px;
+      margin-bottom: 30px;
+      margin-left: 60px;
+      font-weight: bold;
     }
   }
 }

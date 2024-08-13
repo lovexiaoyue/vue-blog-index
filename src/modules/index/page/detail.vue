@@ -189,7 +189,7 @@ export default {
       this.progress = (top / bodyHeight) * 100
     },
     getDetail() {
-      this.$post('/apis/article', this.$route.params).then(res => {
+      this.$post('/api/article', this.$route.params).then(res => {
         this.text_loading = false
         this.detail = res.data
         this.detail.created_at = this.detail.created_at.substring(0,10).replace(/-/g,"/")
@@ -217,7 +217,7 @@ export default {
         id: this.detail.id
       }
       if (!this.hasclick) {
-        this.$post('/apis/article/like', param).then(res => {
+        this.$post('/api/article/like', param).then(res => {
           this.detail.like +=1
           this.hasclick = true
         }).catch(() => {})
@@ -229,7 +229,7 @@ export default {
         article_id: this.detail.id,
         ...this.pageModel,
       }
-      this.$post('/apis/comment/read', param).then(res => {
+      this.$post('/api/comment/read', param).then(res => {
         this.commentList = res.data.data
         this.pageModel.sumCount = res.data.total
 
@@ -241,7 +241,7 @@ export default {
     },
     // 提交评论
     submitComment() {
-      this.$post('/apis/comment/add', this.comment).then(res => {
+      this.$post('/api/comment/add', this.comment).then(res => {
         this.comment.content = ''
         this.detail.comment += 1
         this.$Message.success(res.message)
@@ -254,7 +254,7 @@ export default {
     },
     // 删除自己的留言
     deleteComment(item) {
-      this.$post('/apis/comment/delete', {id: item.id}).then(res => {
+      this.$post('/api/comment/delete', {id: item.id}).then(res => {
         this.commentList.splice(this.commentList.indexOf(item), 1)
         this.$Message.success(res.message)
         this.detail.comment -= 1

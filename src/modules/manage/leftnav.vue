@@ -17,32 +17,24 @@ export default {
       navindex: 0,
       nav: [
         {
-          name: '博客列表',
+          name: '兼职列表',
           url: '/articlelist'
         },
         {
-          name: '写博客',
+          name: '发布兼职',
           url: '/article/add'
         },
         {
-          name: '基础设置',
+          name: '活动列表',
+          url: '/activelist'
+        },
+        {
+          name: '发布活动',
           url: '/setting'
         },
         {
           name: '会员列表',
           url: '/users'
-        },
-        {
-          name: '评论列表',
-          url: '/comment'
-        },
-        {
-          name: '留言板',
-          url: '/message'
-        },
-        {
-          name: '友情链接',
-          url: '/link'
         },
         {
           name: '广告图',

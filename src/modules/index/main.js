@@ -40,7 +40,7 @@ Vue.use(TextLoading)
 Vue.prototype.$get = http.get;
 Vue.prototype.$post = http.post;
 Vue.prototype.$baseApiUrl = process.env.VUE_APP_API_URL;
-Vue.prototype.$staticUrl = "http://taohua-bolg.test.upcdn.net/"
+Vue.prototype.$staticUrl = "http://106.53.176.201/"
 Vue.config.productionTip = false
 
 new Vue({

@@ -13,15 +13,11 @@
           tooltip-effect="dark">
           <el-table-column prop="id" label="编号" width="80" >
           </el-table-column>
-          <el-table-column prop="title" label="标题" show-overflow-tooltip >
-          </el-table-column>
-          <el-table-column prop="type" label="分类" show-overflow-tooltip >
-          </el-table-column>
-          <el-table-column prop="url" label="链接" show-overflow-tooltip >
+          <el-table-column prop="title" label="标题" width="80" >
           </el-table-column>
           <el-table-column label="图片预览" width="180">
             <template slot-scope="scope">
-              <img class="imgload" :src="$staticUrl+scope.row.url" alt="">
+              <img class="imgload" :src="$staticUrl+scope.row.image_url" alt="">
             </template>
           </el-table-column>
           <el-table-column label="操作" width="180">
@@ -40,25 +36,18 @@
         <el-form-item label="标题" >
           <el-input v-model="form.title" clearable size="small"></el-input>
         </el-form-item>
-        <el-form-item label="分类" >
-          <el-input v-model="form.type" clearable size="small"></el-input>
-        </el-form-item>
         <el-form-item label="上传图片" >
           <el-upload
             class="avatar-uploader"
-            action="/apis/image/upload"
+            action="/api/user/upload"
             name="image"
             :headers='headers'
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <img v-if="image_url" :src="image_url" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
-        </el-form-item>
-
-        <el-form-item label="图片链接" class="href">
-          <el-input v-model="form.url" readonly ></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -80,15 +69,15 @@ export default {
       dialogFormVisible: false,
       loading: true,
       adlist: [],
-      imageUrl: '',
+      image_url: '',
       form: {
         title: '',
-        url: '',
+        image_url: '',
         type: ''
       },
       pageModel: {
         page: 1,
-        sumCount: 10
+        page_size: 10
       }
     }
   },
@@ -108,10 +97,9 @@ export default {
   },
   methods: {
     getAd() {
-      this.$post('/apis/ad/list', this.pageModel).then(res => {
-        console.log(res.data)
-        this.adlist = res.data.data
-        this.pageModel.sumCount = res.data.total
+      this.$post('/api/ad/listpage', this.pageModel).then(res => {
+        this.adlist = res.data.list
+        this.pageModel.page_size = res.data.page
         this.loading = false
       })
     },
@@ -121,20 +109,17 @@ export default {
     // 上传图片，获取图片地址
     handleAvatarSuccess(res, file) {
       // 如果已经有图片则先删除图片
-      if (this.form.url) {
+      if (this.form.image_url) {
         this.handleRemove()
       }
 
-      this.imageUrl = URL.createObjectURL(file.raw);
+      this.image_url = URL.createObjectURL(file.raw);
       this.$message.success('图片上传成功')
-      this.form.url = res.data.url
+      this.form.image_url = res.data
     },
     // 删除图片
     handleRemove() {
-      let param = {image: this.form.img}
-      this.$post('/apis/image/delete', param).then(res => {
-        this.$message.success(res.message)
-      })
+
     },
     // 限制图片大小和格式
     beforeAvatarUpload(file) {
@@ -153,8 +138,8 @@ export default {
       this.$confirm('是否删除该广告图?', '提示', {
         type: 'warning'
       }).then(() => {
-        this.$post('/apis/ad/delete', {id: item.id}).then(res => {
-          this.$message.success(res.message)
+        this.$post('/api/ad/del', {ids: item.id.toString() }).then(res => {
+          this.$message.success("删除成功")
           this.adlist.splice(this.adlist.indexOf(item), 1)
         })
       }).catch(() => {     
@@ -162,19 +147,19 @@ export default {
     },
     // 打开新增广告
     addBtn() {
-      this.title = '新增友情链接'
+      this.title = '新增首页广告图'
       this.dialogFormVisible = true
-      this.imageUrl = ''
+      this.image_url = ''
       this.form = {
         title: '',
-        href: '',
+        url: '',
         end_time: ''
       }
     },
     // 提交新增
     addSubmit() {
-      this.$post('/apis/ad/add', this.form).then(res => {
-        this.$message.success(res.message)
+      this.$post('/api/ad/add', this.form).then(res => {
+        this.$message.success("添加成功")
         this.dialogFormVisible = false
         this.getAd()
       })
@@ -185,12 +170,12 @@ export default {
       this.dialogFormVisible = true
       // 复制对象不修改原对象
       this.form = Object.assign({}, item)
-      this.imageUrl = this.$staticUrl + this.form.url
+      this.image_url = this.$staticUrl + this.image_url
     },
     // 提交编辑
     editSubmit() {
-      this.$post('/apis/ad/edit', this.form).then(res => {
-        this.$message.success(res.message)
+      this.$post('/api/ad/edit', this.form).then(res => {
+        this.$message.success("编辑成功")
         this.dialogFormVisible = false
         this.getAd()
       })
@@ -204,20 +189,10 @@ export default {
   min-width: 600px;
 }
 .ad .el-table .cell{
-  line-height 100%
+  line-height: 100%
 }
-</style>
-
-<style scoped lang="stylus">
-.main_table
-  margin-top 20px
-.el-form .el-input
-  width 220px
-.href .el-input
-  width 400px
-
-
-.imgload
-  height 42px 
-
+.imgload{
+  width: 75px;
+  height: 75px;
+}
 </style>

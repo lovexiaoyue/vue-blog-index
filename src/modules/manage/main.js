@@ -23,7 +23,8 @@ import TextLoading from '@/components/TextLoading'
 Vue.use(TextLoading)
 
 // Vue.prototype.$baseUrl = process.env.VUE_APP_URL
-Vue.prototype.$staticUrl = 'http://taohua-bolg.test.upcdn.net/'
+// Vue.prototype.$staticUrl = 'http://106.53.176.201'
+Vue.prototype.$staticUrl = 'http://xiaojixingdong.cn/'
 // }
 // Vue.prototype.$baseUrl = baseUrl
 // // 引入ivew,

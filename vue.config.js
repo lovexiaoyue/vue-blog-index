@@ -13,7 +13,7 @@ module.exports = {
   // outputDir: isProduction ? "prod" : "dist",
   outputDir: "dist",
   pages: {
-    index: {
+    manage: {
       // 应用入口配置，相当于单页面应用的main.js，必需项
       entry: "src/modules/index/main.js",
       // 应用的模版，相当于单页面应用的public/index.html，可选项，省略时默认与模块名一致
@@ -26,7 +26,7 @@ module.exports = {
       // 包含的模块，可选项
       chunks: ["chunk-vendors", "chunk-common", "index"]
     },
-    manage: {
+    index: {
       entry: "src/modules/manage/main.js",
       template: "public/manage.html",
       filename: "manage.html",
@@ -57,8 +57,10 @@ module.exports = {
     https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器
     proxy: {
-      "/apis": {
-        target: "http://47.106.64.131:8080/api/v2", // 需要请求的地址
+      "/api": {
+        // target: "http://106.53.176.201/api", // 需要请求的地址
+        // target: "http://localhost:8880/", // 需要请求的地址
+        target: "http://www.shequyuan.cn/api/", // 需要请求的地址
         // target: process.env.VUE_APP_URL,   // 需要请求的地址
         changeOrigin: true, // 是否跨域
         pathRewrite: {

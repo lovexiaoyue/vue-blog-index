@@ -65,7 +65,7 @@ export default {
   methods: {
     getComment() {
       this.loading = true
-      this.$post('/apis/comment/list', this.pageModel).then(res => {
+      this.$post('/api/comment/list', this.pageModel).then(res => {
 
         console.log(res.data)
         this.comments = res.data.data
@@ -81,7 +81,7 @@ export default {
       this.$confirm('是否删除该评论?', '提示', {
         type: 'warning'
       }).then(() => {
-        this.$post('/apis/comment/deletes', {id}).then(res => {
+        this.$post('/api/comment/deletes', {id}).then(res => {
           this.$message.success(res.message)
           this.getComment()
         })

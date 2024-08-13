@@ -28,18 +28,18 @@ const mutations = {
 
 // 更新state数据的动作
 const actions = {
-  async UserInfo({ commit }, data){
-    const res = await http.get('/apis/user/info')
-    commit('USERINFO', res.data)
-  },
-  Token({ commit }, data) {
-    localStorage.setItem("so_token", data);
-    commit('TOKEN', data)
-  },
-  Logout({ commit }) {
-    localStorage.removeItem("so_token");
-    commit('LOGOUT')
-  },
+  // async UserInfo({ commit }, data){
+  //   const res = await http.get('/api/user/info')
+  //   commit('USERINFO', res.data)
+  // },
+  // Token({ commit }, data) {
+  //   localStorage.setItem("so_token", data);
+  //   commit('TOKEN', data)
+  // },
+  // Logout({ commit }) {
+  //   localStorage.removeItem("so_token");
+  //   commit('LOGOUT')
+  // },
 }
 
 

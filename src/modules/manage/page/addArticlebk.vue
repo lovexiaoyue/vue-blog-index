@@ -8,21 +8,6 @@
           <el-form-item label="活动标题">
             <el-input size="medium" v-model="form.title"> </el-input>
           </el-form-item>
-          <div class="rightbox">
-            <el-form-item label="活动封面" >
-              <el-upload
-                  class="avatar-uploader"
-                  action="/api/user/upload"
-                  name="image"
-                  :headers='headers'
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload">
-                <img v-if="blogBanner" :src="blogBanner" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-form-item>
-          </div>
           <el-form-item label="开始时间">
             <el-date-picker
                 v-model="form.start_time"
@@ -65,7 +50,21 @@
             <el-input size="medium" v-model="form.description" type="textarea" :rows="3"></el-input>
           </el-form-item>
         </div>
-
+        <div class="rightbox">
+          <el-form-item label="活动封面" >
+            <el-upload
+              class="avatar-uploader"
+              action="/api/user/upload"
+              name="image"
+              :headers='headers'
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
+              <img v-if="blogBanner" :src="blogBanner" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
+        </div>
       </el-form>
       <!-- @imgAdd="$imgAdd" @imgDel="$imgDel" -->
     </section>
@@ -119,17 +118,17 @@ export default {
   watch:{
     $route(to,from){
       this.blogBanner = '',
-          this.form =  {
-            title: '',
-            start_time: '',
-            end_time: '',
-            cancel_time: '',
-            count: '',
-            gather_time:'',
-            gather_addr:'',
-            image: '',
-            description: '',
-          }
+      this.form =  {
+        title: '',
+        start_time: '',
+        end_time: '',
+        cancel_time: '',
+        count: '',
+        gather_time:'',
+        gather_addr:'',
+        image: '',
+        description: '',
+      }
     },
   },
   methods: {
@@ -146,16 +145,21 @@ export default {
         id: this.$route.params.id,
         all: 1
       }
-      this.$post('/api/active/one', params).then(res => {
-        this.form = res.data.active
+      this.$post('/api/article/one', params).then(res => {
+        console.log(res.data)
         this.articleLoading = false
+        this.form = res.data
+        this.form.tags = res.data.tags.join(',')
+        if (this.form.image) {
+          this.blogBanner = this.$staticUrl+this.form.image
+        }
       })
     },
     editBtn() {
       // this.loading = true
-      this.$post('/api/active/edit', this.form).then(res => {
-        this.$message.success("修改成功")
-        this.$router.push('/activeList')
+      this.$post('/api/article/edit', this.form).then(res => {
+        this.$message.success(res.message)
+        this.$router.push('/articlelist')
       })
     },
     // 上传图片，获取图片地址
@@ -192,40 +196,40 @@ export default {
 
     // 绑定@imgAdd event 上传图片
     $imgAdd(pos, $file){
-      let formdata = new FormData()
-      formdata.append('image', $file)
-      Axios({
-        url: '/api/user/upload',
-        method: 'post',
-        data: formdata,
-        headers:{
-          // 'Content-Type':'multipart/form-data',
-          'Authorization': this.token,
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      }).then((url) => {
-        console.log(111, url, url.data.data.url, $file)
-        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-        this.$refs.md.$img2Url(pos, this.$staticUrl+url.data.data.url)
-      })
+        let formdata = new FormData()
+        formdata.append('image', $file)
+        Axios({
+            url: '/api/user/upload',
+            method: 'post',
+            data: formdata,
+            headers:{
+              // 'Content-Type':'multipart/form-data',
+              'Authorization': this.token,
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then((url) => {
+          console.log(111, url, url.data.data.url, $file)
+            // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+          this.$refs.md.$img2Url(pos, this.$staticUrl+url.data.data.url)
+        })
     },
     // 因为拿不到图片名称，所以无法删除图片
     $imgDel(pos) {
-      console.log(pos, '图片名')
-      Axios({
-        url: '/api/image/delete',
-        method: 'post',
-        data: {
-          image: pos
-        },
-        headers:{
-          'Authorization': this.token,
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      }).then((url) => {
-        console.log(111, url, url.data.data.url, $file)
-        this.$refs.md.$img2Url(pos, this.$staticUrl+url.data.data.url)
-      })
+        console.log(pos, '图片名')
+        Axios({
+            url: '/api/image/delete',
+            method: 'post',
+            data: {
+              image: pos
+            },
+            headers:{
+              'Authorization': this.token,
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then((url) => {
+          console.log(111, url, url.data.data.url, $file)
+          this.$refs.md.$img2Url(pos, this.$staticUrl+url.data.data.url)
+        })
     }
   }
 }
@@ -234,5 +238,19 @@ export default {
 
 
 <style scoped lang="stylus">
+.el-form
+  display flex
+  .el-input
+    width 220px
 
+
+.input_title
+  width 380px !important
+.el-form-item
+  margin-bottom: 12px
+  margin-right: 50px;
+.el-input-number--small
+  width 80px
+.makedown
+  min-height: 400px;
 </style>

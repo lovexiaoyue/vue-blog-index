@@ -2,32 +2,29 @@
   <div class="main">
     <div class="regiter-box">
       <div class="title">修改密码</div>
-      <Form ref="formCustom" :model="formCustom" label-position="top" :rules="ruleCustom">
+      <el-form ref="formCustom" :model="formCustom" label-position="top" :rules="ruleCustom">
         <Alert :type="alert.type" show-icon v-if="alert.msg">{{alert.msg}}</Alert>
 
-        <FormItem label="当前密码" prop="old_password">
-          <Input type="password" size="large" v-model="formCustom.old_password">
+        <el-form-item label="当前密码" prop="old_password">
+          <el-input type="password" size="large" v-model="formCustom.old_password">
             <Icon type="md-lock" slot="prefix" />
-          </Input>
-        </FormItem>
-        <FormItem label="新密码" prop="new_password">
-          <Input type="password" size="large" v-model="formCustom.new_password">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="新密码" prop="new_password">
+          <el-input type="password" size="large" v-model="formCustom.new_password">
             <Icon type="md-lock" slot="prefix" />
-          </Input>
-        </FormItem>
-        <FormItem label="确认新密码" prop="rep_password">
-          <Input type="password" size="large" v-model="formCustom.rep_password">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="确认新密码" prop="rep_password">
+          <el-input type="password" size="large" v-model="formCustom.rep_password">
             <Icon type="md-lock" slot="prefix" />
-          </Input>
-        </FormItem>
-        <FormItem>
+          </el-input>
+        </el-form-item>
+        <el-form-item>
           <Button type="primary" @click="handleSubmit('formCustom')" long size="large" :loading="loading">修改密码</Button>
           <!-- <Button @click="handleReset('formCustom')" style="margin-left: 8px">重置</Button> -->
-        </FormItem>
-      </Form>
-      <div class="text-center">
-        忘记密码?你可以<router-link to="/recover">重置密码</router-link>
-      </div>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 
@@ -84,7 +81,7 @@ export default {
     // 修改密码接口
     changePasswd() {
       this.loading = true
-      this.$post('/apis/user/resetpassword', this.formCustom).then(res => {
+      this.$post('/api/user/resetpassword', this.formCustom).then(res => {
         this.alert = {
           type: 'success',
           msg: res.message
@@ -123,7 +120,7 @@ export default {
   background: #fff
   font-size: 14px
   box-shadow: 1px 1px 5px #cddde2
-  .ivu-form
+  .ivu-el-form
     padding: 15px 15px 0
 
 </style>

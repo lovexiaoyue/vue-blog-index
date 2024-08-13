@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     getLink() {
-      this.$post('/apis/link/list', this.pageModel).then(res => {
+      this.$post('/api/link/list', this.pageModel).then(res => {
         this.links = res.data.data
         this.pageModel.sumCount = res.data.total
         this.loading = false
@@ -112,7 +112,7 @@ export default {
       this.$confirm('是否删除该链接?', '提示', {
         type: 'warning'
       }).then(() => {
-        this.$post('/apis/link/delete', {id: item.id}).then(res => {
+        this.$post('/api/link/delete', {id: item.id}).then(res => {
           this.$message.success(res.message)
           this.links.splice(this.links.indexOf(item), 1)
         })
@@ -129,7 +129,7 @@ export default {
       }
     },
     addSubmit() {
-      this.$post('/apis/link/add', this.form).then(res => {
+      this.$post('/api/link/add', this.form).then(res => {
         this.$message.success(res.message)
         this.dialogFormVisible = false
         this.getLink()
@@ -142,7 +142,7 @@ export default {
       this.form = Object.assign({}, item)
     },
     editSubmit() {
-      this.$post('/apis/link/edit', this.form).then(res => {
+      this.$post('/api/link/edit', this.form).then(res => {
         this.$message.success(res.message)
         this.dialogFormVisible = false
         this.getLink()

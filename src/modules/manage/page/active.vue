@@ -38,11 +38,6 @@
               <el-switch v-model="scope.row.deleted_at" @change="deleteBtn(scope.row.id, scope.row.deleted_at)"></el-switch>
             </template>
           </el-table-column>
-          <el-table-column label="报名详情" width="100">
-            <template slot-scope="scope">
-              <el-button type="primary" size="mini" @click="joinUser(scope.row.id)">查看</el-button>
-            </template>
-          </el-table-column>
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" @click="detail(scope.row.id)">查看</el-button>
@@ -51,25 +46,6 @@
 
         </el-table>
         <MyPage :pageModel="pageModel" @selectList="selectRoleList" v-if="pageModel.sumCount>10"></MyPage>
-        <el-dialog
-            title="报名详情"
-            :visible.sync="dialogVisible"
-            width="30%">
-          <span slot="footer" class="dialog-footer">
-          <el-table
-              :data="userList"
-              v-loading="loadingUser"
-              stripe
-              style="width: 100%"
-              max-height="600"
-              tooltip-effect="dark">
-          <el-table-column prop="name" label="用户名" width="80">
-          </el-table-column>
-          <el-table-column prop="school" label="学校" show-overflow-tooltip/>
-          <el-table-column prop="phone" label="手机号" show-overflow-tooltip/>
-        </el-table>
-        </span>
-        </el-dialog>
       </div>
     </section>
   </main>
@@ -81,10 +57,6 @@ export default {
     return {
       loading: true,
       articles: [],
-      list: [],
-      userList: [],
-      loadingUser: false,
-      dialogVisible: false,
       pageModel: {
         page: 1,
         all: 1,
@@ -110,28 +82,6 @@ export default {
           })
 
         this.loading = false
-      }).catch(() => {
-      })
-    },
-    joinUser(id){
-      this.dialogVisible = true
-      const param = {
-        id: id.toString()
-      }
-      this.loadingUser = true
-      this.$post('/api/job/userCount', param).then(res => {
-        this.list = res.data.list; //因为每次后端返回的都是数组，所以这边把数组拼接到一起
-        this.loadingUser = false
-        this.userInfo()
-      }).catch(() => {
-      })
-    },
-    userInfo(){
-      const param = {
-        ids: this.list.toString()
-      }
-      this.$post('/api/user/batch', param).then(res => {
-        this.userList = res.data.list
       }).catch(() => {
       })
     },
